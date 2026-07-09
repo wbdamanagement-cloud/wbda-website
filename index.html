@@ -1,607 +1,969 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WBDA Construction LLC — HVAC Mechanical Subcontractor</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-      :root{
-            --navy-deep:#0A1C33;
-            --navy-mid:#14304F;
-            --navy-line:#2A4A6B;
-            --steel:#8B96A1;
-            --paper:#EEF0EC;
-            --paper-dim:#DCDFD8;
-            --ink:#111417;
-            --accent:#E8590C;
-            --accent-dim:#B8460A;
-      }
-      *{margin:0;padding:0;box-sizing:border-box;}
-      html{scroll-behavior:smooth;}
-      body{
-            font-family:'IBM Plex Sans', sans-serif;
-            background:var(--paper);
-            color:var(--ink);
-            overflow-x:hidden;
-      }
-      h1,h2,h3{
-            font-family:'Oswald', sans-serif;
-            text-transform:uppercase;
-            letter-spacing:0.01em;
-            line-height:1.05;
-      }
-      .mono{ font-family:'IBM Plex Mono', monospace; }
-      .eyebrow{
-            font-family:'IBM Plex Mono', monospace;
-            font-size:0.72rem;
-            letter-spacing:0.18em;
-            text-transform:uppercase;
-            color:var(--accent);
-            display:flex;
-            align-items:center;
-            gap:10px;
-      }
-      .eyebrow::before{
-            content:"";
-            width:22px;
-            height:2px;
-            background:var(--accent);
-            display:inline-block;
-      }
-      a{ color:inherit; text-decoration:none; }
-      .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
-      /* ===== HEADER ===== */
-      header{
-            position:fixed; top:0; left:0; right:0; z-index:100;
-            background:rgba(10,28,51,0.94);
-            backdrop-filter:blur(6px);
-            border-bottom:1px solid rgba(255,255,255,0.08);
-      }
-      .nav{
-            display:flex; align-items:center; justify-content:space-between;
-            padding:18px 32px; max-width:1180px; margin:0 auto;
-      }
-      .logo{
-            font-family:'Oswald', sans-serif;
-            font-size:1.3rem;
-            font-weight:600;
-            color:#fff;
-            letter-spacing:0.03em;
-      }
-      .logo span{ color:var(--accent); }
-      .logo small{
-            display:block;
-            font-family:'IBM Plex Mono', monospace;
-            font-size:0.55rem;
-            letter-spacing:0.25em;
-            color:var(--steel);
-            text-transform:uppercase;
-            margin-top:2px;
-      }
-      .navlinks{ display:flex; gap:32px; align-items:center; }
-      .navlinks a{
-            color:var(--steel);
-            font-size:0.85rem;
-            font-weight:500;
-            transition:color 0.2s;
-      }
-      .navlinks a:hover{ color:#fff; }
-      .nav-cta{
-            background:var(--accent);
-            color:#fff !important;
-            padding:9px 20px;
-            font-family:'IBM Plex Mono', monospace;
-            font-size:0.75rem;
-            letter-spacing:0.05em;
-            text-transform:uppercase;
-            border-radius:2px;
-            transition:background 0.2s;
-      }
-      .nav-cta:hover{ background:var(--accent-dim); }
-      .hero-call{
-            display:flex;
-            align-items:center;
-            color:var(--steel);
-            font-size:0.85rem;
-            padding:14px 4px;
-            white-space:nowrap;
-            transition:color 0.2s;
-      }
-      .hero-call .mono{ color:#fff; margin-left:6px; }
-      .hero-call:hover{ color:#fff; }
-      /* ===== DUCT LINE SIGNATURE ===== */
-      .ductline{ width:100%; display:block; }
-      /* ===== HERO ===== */
-      .hero{
-            background:var(--navy-deep);
-            padding:150px 0 0 0;
-            position:relative;
-            overflow:hidden;
-      }
-      .hero-grid{
-            display:grid;
-            grid-template-columns:1.1fr 0.9fr;
-            gap:40px;
-            align-items:center;
-            max-width:1180px;
-            margin:0 auto;
-            padding:0 32px 80px;
-      }
-      .hero h1{
-            color:#fff;
-            font-size:clamp(2.4rem, 4.6vw, 4rem);
-            margin:18px 0 24px;
-      }
-      .hero h1 em{
-            font-style:normal;
-            color:var(--accent);
-      }
-          .hero p.lead{
-                color:#C7CEDA;
-                font-size:1.05rem;
-                line-height:1.65;
-                max-width:480px;
-                margin-bottom:34px;
-          }
-      .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
-      .btn-primary{
-            background:var(--accent);
-            color:#fff;
-            padding:14px 28px;
-            font-family:'IBM Plex Mono', monospace;
-            font-size:0.8rem;
-            letter-spacing:0.06em;
-            text-transform:uppercase;
-            border-radius:2px;
-            display:inline-flex;
-            align-items:center;
-            gap:10px;
-            transition:background 0.2s, transform 0.2s;
-      }
-      .btn-primary:hover{ background:var(--accent-dim); transform:translateX(2px); }
-      .btn-ghost{
-            border:1px solid var(--navy-line);
-            color:#fff;
-            padding:14px 28px;
-            font-family:'IBM Plex Mono', monospace;
-            font-size:0.8rem;
-            letter-spacing:0.06em;
-            text-transform:uppercase;
-            border-radius:2px;
-            transition:border-color 0.2s, background 0.2s;
-      }
-      .btn-ghost:hover{ border-color:var(--steel); background:rgba(255,255,255,0.04); }
-      .hero-panel{
-            background:var(--navy-mid);
-            border:1px solid var(--navy-line);
-            border-radius:4px;
-            padding:28px;
-      }
-      .hero-panel .panel-label{
-            font-family:'IBM Plex Mono', monospace;
-            font-size:0.68rem;
-            letter-spacing:0.15em;
-            text-transform:uppercase;
-            color:var(--steel);
-            margin-bottom:18px;
-            padding-bottom:14px;
-            border-bottom:1px solid var(--navy-line);
-      }
-      .spec-row{
-            display:flex; justify-content:space-between; align-items:baseline;
-            padding:12px 0;
-            border-bottom:1px solid rgba(255,255,255,0.06);
-      }
-      .spec-row:last-child{ border-bottom:none; }
-      .spec-row .k{ color:#C7CEDA; font-size:0.85rem; }
-      .spec-row .v{
-            font-family:'IBM Plex Mono', monospace;
-            color:#fff;
-            font-size:0.85rem;
-      }
-      /* ===== SECTION SHARED ===== */
-      section{ padding:96px 0; }
-      .section-head{ margin-bottom:56px; max-width:640px; }
-      .section-head h2{
-            font-size:clamp(1.8rem, 3vw, 2.6rem);
-            margin-top:14px;
-            color:var(--navy-deep);
-      }
-      .section-head p{
-            color:#4a5058;
-            font-size:1rem;
-            line-height:1.6;
-            margin-top:16px;
-      }
-      /* ===== SERVICES ===== */
-      .services{ background:var(--paper); }
-      .service-grid{
-            display:grid;
-            grid-template-columns:repeat(4, 1fr);
-            gap:1px;
-            background:var(--paper-dim);
-            border:1px solid var(--paper-dim);
-      }
-      .service-card{
-            background:var(--paper);
-            padding:32px 26px;
-            transition:background 0.25s;
-      }
-      .service-card:hover{ background:#fff; }
-      .service-num{
-            font-family:'IBM Plex Mono', monospace;
-            font-size:0.75rem;
-            color:var(--accent);
-            margin-bottom:20px;
-      }
-      .service-card h3{
-            font-size:1.05rem;
-            color:var(--navy-deep);
-            margin-bottom:10px;
-      }
-      .service-card p{
-            font-size:0.88rem;
-            color:#5a6068;
-            line-height:1.55;
-      }
-      .service-note{
-            margin-top:28px;
-            font-size:0.82rem;
-            color:#6b7078;
-            font-style:italic;
-      }
-      /* ===== PROCESS ===== */
-      .process{ background:var(--paper); color:var(--ink); border-top:1px solid var(--paper-dim); border-bottom:1px solid var(--paper-dim); }
-      .process .section-head h2{ color:var(--navy-deep); }
-      .process .section-head p{ color:#4a5058; }
-      .process .eyebrow{ color:var(--accent); }
-      .timeline{
-            display:grid;
-            grid-template-columns:repeat(3, 1fr);
-            gap:0;
-            position:relative;
-      }
-      .timeline::before{
-            content:"";
-            position:absolute;
-            top:22px; left:0; right:0;
-            height:2px;
-            background:var(--paper-dim);
-      }
-      .stage{ position:relative; padding-right:30px; }
-      .stage-dot{
-            width:44px; height:44px;
-            border:2px solid var(--accent);
-            border-radius:50%;
-            background:var(--paper);
-            display:flex; align-items:center; justify-content:center;
-            font-family:'IBM Plex Mono', monospace;
-            font-size:0.8rem;
-            color:var(--accent);
-            margin-bottom:22px;
-            position:relative;
-            z-index:2;
-      }
-      .stage h3{ font-size:1.15rem; margin-bottom:10px; color:var(--navy-deep); }
-      .stage p{ font-size:0.88rem; color:#5a6068; line-height:1.6; max-width:280px; }
-      /* ===== WHY WBDA ===== */
-      .why{ background:var(--paper); }
-      .why-grid{
-            display:grid;
-            grid-template-columns:1fr 1fr;
-            gap:60px;
-            align-items:start;
-      }
-      .why-list{ display:flex; flex-direction:column; gap:28px; }
-      .why-item{ display:flex; gap:18px; }
-      .why-mark{
-            font-family:'IBM Plex Mono', monospace;
-            color:var(--accent);
-            font-size:0.9rem;
-            padding-top:2px;
-            flex-shrink:0;
-      }
-      .why-item h3{
-            font-size:1rem;
-            color:var(--navy-deep);
-            margin-bottom:6px;
-            text-transform:none;
-            font-family:'IBM Plex Sans', sans-serif;
-            font-weight:600;
-      }
-      .why-item p{ font-size:0.9rem; color:#5a6068; line-height:1.6; }
-      .coverage-card{
-            background:var(--navy-deep);
-            border-radius:4px;
-            padding:36px;
-            color:#fff;
-      }
-      .coverage-card .panel-label{
-            font-family:'IBM Plex Mono', monospace;
-            font-size:0.68rem;
-            letter-spacing:0.15em;
-            text-transform:uppercase;
-            color:var(--steel);
-            margin-bottom:24px;
-      }
-      .coverage-states{ display:flex; gap:14px; margin-bottom:28px; }
-      .state-chip{
-            border:1px solid var(--navy-line);
-            padding:10px 18px;
-            font-family:'IBM Plex Mono', monospace;
-            font-size:0.85rem;
-            border-radius:2px;
-      }
-      .coverage-card p{ color:#C7CEDA; font-size:0.9rem; line-height:1.65; }
-      /* ===== CONTACT ===== */
-      .contact{ background:var(--navy-deep); color:#fff; }
-      .contact-grid{
-            display:grid;
-            grid-template-columns:1fr;
-            gap:40px;
-            max-width:560px;
-            margin:0 auto;
-      }
-      .contact .section-head h2{ color:#fff; }
-      .contact .section-head p{ color:#C7CEDA; }
-      .contact-info{ display:flex; flex-direction:column; gap:24px; }
-      .contact-line .k{
-            font-family:'IBM Plex Mono', monospace;
-            font-size:0.7rem;
-            letter-spacing:0.12em;
-            text-transform:uppercase;
-            color:var(--steel);
-            margin-bottom:6px;
-      }
-      .contact-line .v{ font-size:1.05rem; }
-      .contact-line a:hover{ color:var(--accent); }
-      form{ display:flex; flex-direction:column; gap:16px; }
-      form label{
-            font-family:'IBM Plex Mono', monospace;
-            font-size:0.7rem;
-            letter-spacing:0.1em;
-            text-transform:uppercase;
-            color:var(--steel);
-      }
-      form input, form textarea{
-            background:var(--navy-mid);
-            border:1px solid var(--navy-line);
-            color:#fff;
-            padding:12px 14px;
-            font-family:'IBM Plex Sans', sans-serif;
-            font-size:0.92rem;
-            border-radius:2px;
-            outline:none;
-      }
-      form input:focus, form textarea:focus{ border-color:var(--accent); }
-      form textarea{ resize:vertical; min-height:90px; }
-      .form-submit{
-            background:var(--accent);
-            color:#fff;
-            border:none;
-            padding:14px 24px;
-            font-family:'IBM Plex Mono', monospace;
-            font-size:0.8rem;
-            letter-spacing:0.06em;
-            text-transform:uppercase;
-            border-radius:2px;
-            cursor:pointer;
-            margin-top:8px;
-            transition:background 0.2s;
-      }
-      .form-submit:hover{ background:var(--accent-dim); }
-      /* ===== FOOTER ===== */
-      footer{
-            background:#071322;
-            color:var(--steel);
-            padding:28px 0;
-            font-size:0.8rem;
-      }
-      .footer-row{
-            display:flex; justify-content:space-between; align-items:center;
-            flex-wrap:wrap; gap:12px;
-      }
-      /* ===== RESPONSIVE ===== */
-      @media (max-width:900px){
-            .navlinks{ display:none; }
-            .hero-grid{ grid-template-columns:1fr; }
-            .service-grid{ grid-template-columns:repeat(2, 1fr); }
-            .timeline{ grid-template-columns:1fr; gap:36px; }
-            .timeline::before{ display:none; }
-            .why-grid, .contact-grid{ grid-template-columns:1fr; gap:40px; }
-      }
-      @media (max-width:560px){
-            .service-grid{ grid-template-columns:1fr; }
-            .wrap, .nav{ padding-left:20px; padding-right:20px; }
-            .hero-grid{ padding-left:20px; padding-right:20px; }
-      }
-      @media (prefers-reduced-motion: reduce){
-            html{ scroll-behavior:auto; }
-            *{ transition:none !important; animation:none !important; }
-      }
-      /* ===== INTERACTIVITY / MOTION ===== */
-      header{ transition:padding 0.3s ease, background 0.3s ease; }
-      header.scrolled .nav{ padding-top:12px; padding-bottom:12px; }
-      .reveal{
-            opacity:0;
-            transform:translateY(28px);
-            transition:opacity 0.7s cubic-bezier(.2,.7,.3,1), transform 0.7s cubic-bezier(.2,.7,.3,1);
-      }
-      .reveal.in-view{ opacity:1; transform:none; }
-      .service-grid.in-view .service-card:nth-child(1){ transition-delay:0.05s; }
-      .service-grid.in-view .service-card:nth-child(2){ transition-delay:0.15s; }
-      .service-grid.in-view .service-card:nth-child(3){ transition-delay:0.25s; }
-      .service-grid.in-view .service-card:nth-child(4){ transition-delay:0.35s; }
-      .timeline.in-view .stage:nth-child(1){ transition-delay:0.05s; }
-      .timeline.in-view .stage:nth-child(2){ transition-delay:0.2s; }
-      .timeline.in-view .stage:nth-child(3){ transition-delay:0.35s; }
-      .why-list.in-view .why-item:nth-child(1){ transition-delay:0.05s; }
-      .why-list.in-view .why-item:nth-child(2){ transition-delay:0.15s; }
-      .why-list.in-view .why-item:nth-child(3){ transition-delay:0.25s; }
-      .why-list.in-view .why-item:nth-child(4){ transition-delay:0.35s; }
-      .why-list.in-view .why-item:nth-child(5){ transition-delay:0.45s; }
-      .service-card{
-            border-left:2px solid transparent;
-            transition:background 0.25s, border-color 0.25s, transform 0.25s;
-            cursor:default;
-      }
-      .service-card:hover{
-            background:#fff;
-            border-left-color:var(--accent);
-            transform:translateY(-4px);
-      }
-      .service-num{ transition:transform 0.25s; }
-      .service-card:hover .service-num{ transform:scale(1.15); }
-      .why-item{ transition:transform 0.25s; }
-      .why-mark{ transition:transform 0.25s, color 0.25s; }
-      .why-item:hover{ transform:translateX(4px); }
-      .why-item:hover .why-mark{ transform:translateX(4px); }
-      .stage-dot{ transition:transform 0.3s, box-shadow 0.3s; }
-      .stage:hover .stage-dot{
-            transform:scale(1.1);
-            box-shadow:0 0 0 6px rgba(232,89,12,0.12);
-      }
-      .timeline-line-fill{
-            position:absolute; top:22px; left:0; height:2px;
-            background:var(--accent);
-            width:0%;
-            z-index:1;
-            will-change:width;
-      }
-      .btn-primary, .btn-ghost{ transition:background 0.2s, transform 0.15s, border-color 0.2s, box-shadow 0.2s; }
-      .btn-primary:active, .btn-ghost:active{ transform:scale(0.97); }
-      .btn-primary:hover{ box-shadow:0 6px 18px rgba(232,89,12,0.28); }
-      .nav-cta{ transition:background 0.2s, transform 0.15s; }
-      .nav-cta:active{ transform:scale(0.96); }
-      form input, form textarea{ transition:border-color 0.2s, box-shadow 0.2s; }
-      form input:focus, form textarea:focus{ box-shadow:0 0 0 3px rgba(232,89,12,0.15); }
-      .form-submit{ transition:background 0.2s, transform 0.15s; }
-      .form-submit:active{ transform:scale(0.97); }
-      .hero-ductpath{
-            stroke-dasharray:2000;
-            stroke-dashoffset:2000;
-            animation:draw-duct 1.8s cubic-bezier(.4,0,.2,1) 0.2s forwards;
-      }
-      @keyframes draw-duct{ to{ stroke-dashoffset:0; } }
-      .hero-panel .spec-row{ transition:background 0.2s; }
-      .hero-panel .spec-row:hover{ background:rgba(255,255,255,0.03); }
-      .state-chip{ transition:border-color 0.2s, transform 0.2s; }
-      .state-chip:hover{ border-color:var(--accent); transform:translateY(-2px); }
-      .contact-line a{ transition:color 0.2s; }
-      /* ===== DUCT ASSEMBLY DIVIDERS — scroll-scrubbed (tied to scroll position, reversible) ===== */
-      .duct-divider{ width:100%; overflow:visible; line-height:0; position:relative; }
-      .duct-divider svg.duct-svg{ width:100%; height:64px; display:block; overflow:visible; }
-      .duct-worker{
-            position:absolute;
-            top:50%;
-            left:0;
-            width:34px; height:48px;
-            transform:translate(-50%, -100%);
-            opacity:0;
-            pointer-events:none;
-            will-change:opacity, left;
-      }
-      /* Base/resting state before JS takes over (also the reduced-motion fallback) */
-      .duct-seg{ fill:var(--steel); opacity:0; will-change:transform, opacity; }
-      .duct-rib{ stroke:var(--navy-mid); stroke-width:1.5; opacity:0; will-change:opacity; }
-      .duct-joint{ fill:var(--navy-line); opacity:0; transform-origin:center; will-change:transform, opacity; }
-      .duct-joint-bolt{ fill:var(--steel); opacity:0; will-change:fill, opacity; }
-      @media (prefers-reduced-motion: reduce){
-            .duct-seg{ opacity:0.4 !important; transform:none !important; }
-            .duct-rib{ opacity:0.5 !important; }
-            .duct-joint{ opacity:1 !important; transform:scale(1) !important; }
-            .duct-joint-bolt{ opacity:1 !important; fill:var(--accent) !important; filter:none !important; }
-            .timeline-line-fill{ width:100% !important; }
-            .duct-worker{ display:none !important; }
-      }
-    </style>
-  </head>
-
-  <body>
-    <header>
-        <nav class="nav">
-              <div class="logo">WBDA <span>/</span> CONSTRUCTION
-                    <small>Mechanical Subcontractors — AL &amp; GA</small>
-              </div>div>
-            <div class="navlinks">
-                  <a href="#services">Services</a>a>
-                  <a href="#process">Process</a>a>
-                  <a href="#why">Why WBDA</a>a>
-                  <a href="#contact" class="nav-cta">Request a Quote</a>a>
-            </div>div>
-        </nav>nav>
-    </header>
-  <!-- DUCT LINE SIGNATURE — appears at top of hero and as section dividers -->
-  <svg class="ductline" viewBox="0 0 1180 40" preserveAspectRatio="none" style="background:var(--navy-deep); padding-top:64px;">
-    <path class="hero-ductpath" d="M0,20 L200,20 L200,8 L420,8 L420,32 L660,32 L660,20 L900,20 L900,8 L1180,8"
-              fill="none" stroke="#2A4A6B" stroke-width="2"/>
-    <circle cx="200" cy="20" r="3" fill="#E8590C"/>
-    <circle cx="420" cy="8" r="3" fill="#E8590C"/>
-    <circle cx="660" cy="32" r="3" fill="#E8590C"/>
-    <circle cx="900" cy="20" r="3" fill="#E8590C"/>
-  </svg>svg>
-  <section class="hero">
-    <div class="hero-grid">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WBDA Construction LLC — HVAC Mechanical Subcontractor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#0A1C33;
+    --navy-mid:#14304F;
+    --navy-line:#2A4A6B;
+    --steel:#8B96A1;
+    --paper:#EEF0EC;
+    --paper-dim:#DCDFD8;
+    --ink:#111417;
+    --accent:#E8590C;
+    --accent-dim:#B8460A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'IBM Plex Sans', sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    line-height:1.05;
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;
+    height:2px;
+    background:var(--accent);
+    display:inline-block;
+  }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(10,28,51,0.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Oswald', sans-serif;
+    font-size:1.3rem;
+    font-weight:600;
+    color:#fff;
+    letter-spacing:0.03em;
+  }
+  .logo span{ color:var(--accent); }
+  .logo small{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.55rem;
+    letter-spacing:0.25em;
+    color:var(--steel);
+    text-transform:uppercase;
+    margin-top:2px;
+  }
+  .navlinks{ display:flex; gap:32px; align-items:center; }
+  .navlinks a{
+    color:var(--steel);
+    font-size:0.85rem;
+    font-weight:500;
+    transition:color 0.2s;
+  }
+  .navlinks a:hover{ color:#fff; }
+  .nav-cta{
+    background:var(--accent);
+    color:#fff !important;
+    padding:9px 20px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    border-radius:2px;
+    transition:background 0.2s;
+  }
+  .nav-cta:hover{ background:var(--accent-dim); }
+  .hero-call{
+    display:flex;
+    align-items:center;
+    color:var(--steel);
+    font-size:0.85rem;
+    padding:14px 4px;
+    white-space:nowrap;
+    transition:color 0.2s;
+  }
+  .hero-call .mono{ color:#fff; margin-left:6px; }
+  .hero-call:hover{ color:#fff; }
+  .ductline{ width:100%; display:block; }
+  .hero{
+    background:var(--navy-deep);
+    padding:150px 0 0 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:40px;
+    align-items:center;
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px 80px;
+  }
+  .hero h1{
+    color:#fff;
+    font-size:clamp(2.4rem, 4.6vw, 4rem);
+    margin:18px 0 24px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--accent);
+  }
+  .hero p.lead{
+    color:#C7CEDA;
+    font-size:1.05rem;
+    line-height:1.65;
+    max-width:480px;
+    margin-bottom:34px;
+  }
+  .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
+  .btn-primary{
+    background:var(--accent);
+    color:#fff;
+    padding:14px 28px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    border-radius:2px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    transition:background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover{ background:var(--accent-dim); transform:translateX(2px); }
+  .btn-ghost{
+    border:1px solid var(--navy-line);
+    color:#fff;
+    padding:14px 28px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    border-radius:2px;
+    transition:border-color 0.2s, background 0.2s;
+  }
+  .btn-ghost:hover{ border-color:var(--steel); background:rgba(255,255,255,0.04); }
+  .hero-panel{
+    background:var(--navy-mid);
+    border:1px solid var(--navy-line);
+    border-radius:4px;
+    padding:28px;
+  }
+  .hero-panel .panel-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--steel);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--navy-line);
+  }
+  .spec-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:12px 0;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .spec-row:last-child{ border-bottom:none; }
+  .spec-row .k{ color:#C7CEDA; font-size:0.85rem; }
+  .spec-row .v{
+    font-family:'IBM Plex Mono', monospace;
+    color:#fff;
+    font-size:0.85rem;
+  }
+  section{ padding:96px 0; }
+  .section-head{ margin-bottom:56px; max-width:640px; }
+  .section-head h2{
+    font-size:clamp(1.8rem, 3vw, 2.6rem);
+    margin-top:14px;
+    color:var(--navy-deep);
+  }
+  .section-head p{
+    color:#4a5058;
+    font-size:1rem;
+    line-height:1.6;
+    margin-top:16px;
+  }
+  .services{ background:var(--paper); }
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:var(--paper-dim);
+    border:1px solid var(--paper-dim);
+  }
+  .service-card{
+    background:var(--paper);
+    padding:32px 26px;
+    transition:background 0.25s;
+  }
+  .service-card:hover{ background:#fff; }
+  .service-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    color:var(--accent);
+    margin-bottom:20px;
+  }
+  .service-card h3{
+    font-size:1.05rem;
+    color:var(--navy-deep);
+    margin-bottom:10px;
+  }
+  .service-card p{
+    font-size:0.88rem;
+    color:#5a6068;
+    line-height:1.55;
+  }
+  .service-note{
+    margin-top:28px;
+    font-size:0.82rem;
+    color:#6b7078;
+    font-style:italic;
+  }
+  .process{ background:var(--paper); color:var(--ink); border-top:1px solid var(--paper-dim); border-bottom:1px solid var(--paper-dim); }
+  .process .section-head h2{ color:var(--navy-deep); }
+  .process .section-head p{ color:#4a5058; }
+  .process .eyebrow{ color:var(--accent); }
+  .timeline{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:0;
+    position:relative;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    top:22px; left:0; right:0;
+    height:2px;
+    background:var(--paper-dim);
+  }
+  .stage{ position:relative; padding-right:30px; }
+  .stage-dot{
+    width:44px; height:44px;
+    border:2px solid var(--accent);
+    border-radius:50%;
+    background:var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    color:var(--accent);
+    margin-bottom:22px;
+    position:relative;
+    z-index:2;
+  }
+  .stage h3{ font-size:1.15rem; margin-bottom:10px; color:var(--navy-deep); }
+  .stage p{ font-size:0.88rem; color:#5a6068; line-height:1.6; max-width:280px; }
+  .why{ background:var(--paper); }
+  .why-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:start;
+  }
+  .why-list{ display:flex; flex-direction:column; gap:28px; }
+  .why-item{ display:flex; gap:18px; }
+  .why-mark{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--accent);
+    font-size:0.9rem;
+    padding-top:2px;
+    flex-shrink:0;
+  }
+  .why-item h3{
+    font-size:1rem;
+    color:var(--navy-deep);
+    margin-bottom:6px;
+    text-transform:none;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:600;
+  }
+  .why-item p{ font-size:0.9rem; color:#5a6068; line-height:1.6; }
+  .coverage-card{
+    background:var(--navy-deep);
+    border-radius:4px;
+    padding:36px;
+    color:#fff;
+  }
+  .coverage-card .panel-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--steel);
+    margin-bottom:24px;
+  }
+  .coverage-states{ display:flex; gap:14px; margin-bottom:28px; }
+  .state-chip{
+    border:1px solid var(--navy-line);
+    padding:10px 18px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    border-radius:2px;
+  }
+  .coverage-card p{ color:#C7CEDA; font-size:0.9rem; line-height:1.65; }
+  .contact{ background:var(--navy-deep); color:#fff; }
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:40px;
+    max-width:560px;
+    margin:0 auto;
+  }
+  .contact .section-head h2{ color:#fff; }
+  .contact .section-head p{ color:#C7CEDA; }
+  .contact-info{ display:flex; flex-direction:column; gap:24px; }
+  .contact-line .k{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--steel);
+    margin-bottom:6px;
+  }
+  .contact-line .v{ font-size:1.05rem; }
+  .contact-line a:hover{ color:var(--accent); }
+  form{ display:flex; flex-direction:column; gap:16px; }
+  form label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--steel);
+  }
+  form input, form textarea{
+    background:var(--navy-mid);
+    border:1px solid var(--navy-line);
+    color:#fff;
+    padding:12px 14px;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:0.92rem;
+    border-radius:2px;
+    outline:none;
+  }
+  form input:focus, form textarea:focus{ border-color:var(--accent); }
+  form textarea{ resize:vertical; min-height:90px; }
+  .form-submit{
+    background:var(--accent);
+    color:#fff;
+    border:none;
+    padding:14px 24px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    border-radius:2px;
+    cursor:pointer;
+    margin-top:8px;
+    transition:background 0.2s;
+  }
+  .form-submit:hover{ background:var(--accent-dim); }
+  footer{
+    background:#071322;
+    color:var(--steel);
+    padding:28px 0;
+    font-size:0.8rem;
+  }
+  .footer-row{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:12px;
+  }
+  @media (max-width:900px){
+    .navlinks{ display:none; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .service-grid{ grid-template-columns:repeat(2, 1fr); }
+    .timeline{ grid-template-columns:1fr; gap:36px; }
+    .timeline::before{ display:none; }
+    .why-grid, .contact-grid{ grid-template-columns:1fr; gap:40px; }
+  }
+  @media (max-width:560px){
+    .service-grid{ grid-template-columns:1fr; }
+    .wrap, .nav{ padding-left:20px; padding-right:20px; }
+    .hero-grid{ padding-left:20px; padding-right:20px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; animation:none !important; }
+  }
+  header{ transition:padding 0.3s ease, background 0.3s ease; }
+  header.scrolled .nav{ padding-top:12px; padding-bottom:12px; }
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity 0.7s cubic-bezier(.2,.7,.3,1), transform 0.7s cubic-bezier(.2,.7,.3,1);
+  }
+  .reveal.in-view{ opacity:1; transform:none; }
+  .service-grid.in-view .service-card:nth-child(1){ transition-delay:0.05s; }
+  .service-grid.in-view .service-card:nth-child(2){ transition-delay:0.15s; }
+  .service-grid.in-view .service-card:nth-child(3){ transition-delay:0.25s; }
+  .service-grid.in-view .service-card:nth-child(4){ transition-delay:0.35s; }
+  .timeline.in-view .stage:nth-child(1){ transition-delay:0.05s; }
+  .timeline.in-view .stage:nth-child(2){ transition-delay:0.2s; }
+  .timeline.in-view .stage:nth-child(3){ transition-delay:0.35s; }
+  .why-list.in-view .why-item:nth-child(1){ transition-delay:0.05s; }
+  .why-list.in-view .why-item:nth-child(2){ transition-delay:0.15s; }
+  .why-list.in-view .why-item:nth-child(3){ transition-delay:0.25s; }
+  .why-list.in-view .why-item:nth-child(4){ transition-delay:0.35s; }
+  .why-list.in-view .why-item:nth-child(5){ transition-delay:0.45s; }
+  .service-card{
+    border-left:2px solid transparent;
+    transition:background 0.25s, border-color 0.25s, transform 0.25s;
+    cursor:default;
+  }
+  .service-card:hover{
+    background:#fff;
+    border-left-color:var(--accent);
+    transform:translateY(-4px);
+  }
+  .service-num{ transition:transform 0.25s; }
+  .service-card:hover .service-num{ transform:scale(1.15); }
+  .why-item{ transition:transform 0.25s; }
+  .why-mark{ transition:transform 0.25s, color 0.25s; }
+  .why-item:hover{ transform:translateX(4px); }
+  .why-item:hover .why-mark{ transform:translateX(4px); }
+  .stage-dot{ transition:transform 0.3s, box-shadow 0.3s; }
+  .stage:hover .stage-dot{
+    transform:scale(1.1);
+    box-shadow:0 0 0 6px rgba(232,89,12,0.12);
+  }
+  .timeline-line-fill{
+    position:absolute; top:22px; left:0; height:2px;
+    background:var(--accent);
+    width:0%;
+    z-index:1;
+    will-change:width;
+  }
+  .btn-primary, .btn-ghost{ transition:background 0.2s, transform 0.15s, border-color 0.2s, box-shadow 0.2s; }
+  .btn-primary:active, .btn-ghost:active{ transform:scale(0.97); }
+  .btn-primary:hover{ box-shadow:0 6px 18px rgba(232,89,12,0.28); }
+  .nav-cta{ transition:background 0.2s, transform 0.15s; }
+  .nav-cta:active{ transform:scale(0.96); }
+  form input, form textarea{ transition:border-color 0.2s, box-shadow 0.2s; }
+  form input:focus, form textarea:focus{ box-shadow:0 0 0 3px rgba(232,89,12,0.15); }
+  .form-submit{ transition:background 0.2s, transform 0.15s; }
+  .form-submit:active{ transform:scale(0.97); }
+  .hero-ductpath{
+    stroke-dasharray:2000;
+    stroke-dashoffset:2000;
+    animation:draw-duct 1.8s cubic-bezier(.4,0,.2,1) 0.2s forwards;
+  }
+  @keyframes draw-duct{ to{ stroke-dashoffset:0; } }
+  .hero-panel .spec-row{ transition:background 0.2s; }
+  .hero-panel .spec-row:hover{ background:rgba(255,255,255,0.03); }
+  .state-chip{ transition:border-color 0.2s, transform 0.2s; }
+  .state-chip:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .contact-line a{ transition:color 0.2s; }
+  .duct-divider{ width:100%; overflow:visible; line-height:0; position:relative; }
+  .duct-divider svg.duct-svg{ width:100%; height:64px; display:block; overflow:visible; }
+  .duct-worker{
+    position:absolute;
+    top:50%;
+    left:0;
+    width:34px; height:48px;
+    transform:translate(-50%, -100%);
+    opacity:0;
+    pointer-events:none;
+    will-change:opacity, left;
+  }
+  .duct-seg{ fill:var(--steel); opacity:0; will-change:transform, opacity; }
+  .duct-rib{ stroke:var(--navy-mid); stroke-width:1.5; opacity:0; will-change:opacity; }
+  .duct-joint{ fill:var(--navy-line); opacity:0; transform-origin:center; will-change:transform, opacity; }
+  .duct-joint-bolt{ fill:var(--steel); opacity:0; will-change:fill, opacity; }
+  @media (prefers-reduced-motion: reduce){
+    .duct-seg{ opacity:0.4 !important; transform:none !important; }
+    .duct-rib{ opacity:0.5 !important; }
+    .duct-joint{ opacity:1 !important; transform:scale(1) !important; }
+    .duct-joint-bolt{ opacity:1 !important; fill:var(--accent) !important; filter:none !important; }
+    .timeline-line-fill{ width:100% !important; }
+    .duct-worker{ display:none !important; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <div class="logo">WBDA <span>/</span> CONSTRUCTION
+      <small>Mechanical Subcontractors — AL &amp; GA</small>
+    </div>
+    <div class="navlinks">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#why">Why WBDA</a>
+      <a href="#contact" class="nav-cta">Request a Quote</a>
+    </div>
+  </nav>
+</header>
+<svg class="ductline" viewBox="0 0 1180 40" preserveAspectRatio="none" style="background:var(--navy-deep); padding-top:64px;">
+  <path class="hero-ductpath" d="M0,20 L200,20 L200,8 L420,8 L420,32 L660,32 L660,20 L900,20 L900,8 L1180,8"
+        fill="none" stroke="#2A4A6B" stroke-width="2"/>
+  <circle cx="200" cy="20" r="3" fill="#E8590C"/>
+  <circle cx="420" cy="8" r="3" fill="#E8590C"/>
+  <circle cx="660" cy="32" r="3" fill="#E8590C"/>
+  <circle cx="900" cy="20" r="3" fill="#E8590C"/>
+</svg>
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">HVAC Mechanical Subcontractor — Alabama &amp; Georgia</div>
+      <h1>Tight crews. <em>Fast</em> installs.<br>Zero excuses on schedule.</h1>
+      <p class="lead">WBDA Construction runs dedicated HVAC labor crews for general contractors who need ductwork, insulation, and equipment set fast — without babysitting the subcontractor.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-primary">Request a Quote →</a>
+        <a href="#services" class="btn-ghost">See Capabilities</a>
+        <a href="tel:+13343147819" class="hero-call">Or Call Us <span class="mono">334-314-7819</span></a>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <div class="panel-label">Scope of Work</div>
+      <div class="spec-row"><span class="k">Ductwork installation</span><span class="v">✓</span></div>
+      <div class="spec-row"><span class="k">Insulation</span><span class="v">✓</span></div>
+      <div class="spec-row"><span class="k">Equipment hanging</span><span class="v">✓</span></div>
+      <div class="spec-row"><span class="k">Selective demo</span><span class="v">✓</span></div>
+      <div class="spec-row"><span class="k">Copper / refrigerant</span><span class="v mono">by approval</span></div>
+      <div class="spec-row"><span class="k">Ferrous metalwork / welding</span><span class="v mono">not scoped</span></div>
+    </div>
+  </div>
+</section>
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="eyebrow">Capabilities</div>
+    <div class="section-head reveal">
+      <h2>Man-labor HVAC, done right</h2>
+      <p>We don't spread thin across every trade. WBDA crews specialize in mechanical labor — so every job gets a crew that's actually good at it.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="service-grid reveal">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <h3>Ductwork Installation</h3>
+        <p>Rectangular and round duct, hangers, and layout execution to spec — sized to keep pace with the schedule, not slow it down.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <h3>Insulation</h3>
+        <p>Duct and equipment insulation installed to code, coordinated tightly with rough-in so trim-out isn't waiting on us.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <h3>Equipment Hanging</h3>
+        <p>Air handlers, RTUs, and mechanical equipment set and secured — rigging and placement handled by crews who've done it before.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <h3>Selective Demo</h3>
+        <p>Removal of existing mechanical systems and ductwork ahead of new install, sequenced to protect your project timeline.</p>
+      </div>
+    </div>
+    <p class="service-note">Copper and refrigerant work available on a per-project approval basis. WBDA does not perform ferrous metalwork or welding.</p>
+  </div>
+</section>
+<div class="duct-divider" aria-hidden="true">
+  <svg class="duct-svg" viewBox="0 0 1180 64" preserveAspectRatio="none">
+    <rect class="duct-seg seg-a" x="40" y="20" width="340" height="24" rx="3"/>
+    <g class="duct-rib seg-a-ribs">
+      <line x1="110" y1="20" x2="110" y2="44"/><line x1="180" y1="20" x2="180" y2="44"/><line x1="250" y1="20" x2="250" y2="44"/><line x1="320" y1="20" x2="320" y2="44"/>
+    </g>
+    <rect class="duct-joint joint-1" x="390" y="12" width="24" height="40" rx="4"/>
+    <g class="duct-joint-bolt joint-1-bolts">
+      <circle cx="396" cy="18" r="2"/><circle cx="408" cy="18" r="2"/><circle cx="396" cy="46" r="2"/><circle cx="408" cy="46" r="2"/>
+    </g>
+    <rect class="duct-seg seg-b" x="424" y="20" width="332" height="24" rx="3"/>
+    <g class="duct-rib seg-b-ribs">
+      <line x1="490" y1="20" x2="490" y2="44"/><line x1="560" y1="20" x2="560" y2="44"/><line x1="630" y1="20" x2="630" y2="44"/><line x1="700" y1="20" x2="700" y2="44"/>
+    </g>
+    <rect class="duct-joint joint-2" x="766" y="12" width="24" height="40" rx="4"/>
+    <g class="duct-joint-bolt joint-2-bolts">
+      <circle cx="772" cy="18" r="2"/><circle cx="784" cy="18" r="2"/><circle cx="772" cy="46" r="2"/><circle cx="784" cy="46" r="2"/>
+    </g>
+    <rect class="duct-seg seg-c" x="800" y="20" width="340" height="24" rx="3"/>
+    <g class="duct-rib seg-c-ribs">
+      <line x1="870" y1="20" x2="870" y2="44"/><line x1="940" y1="20" x2="940" y2="44"/><line x1="1010" y1="20" x2="1010" y2="44"/><line x1="1080" y1="20" x2="1080" y2="44"/>
+    </g>
+  </svg>
+  <div class="duct-worker">
+    <svg viewBox="0 0 34 48" xmlns="http://www.w3.org/2000/svg">
+      <line x1="6" y1="48" x2="6" y2="6" stroke="var(--steel)" stroke-width="2"/>
+      <line x1="14" y1="48" x2="14" y2="6" stroke="var(--steel)" stroke-width="2"/>
+      <line x1="6" y1="14" x2="14" y2="14" stroke="var(--steel)" stroke-width="2"/>
+      <line x1="6" y1="24" x2="14" y2="24" stroke="var(--steel)" stroke-width="2"/>
+      <line x1="6" y1="34" x2="14" y2="34" stroke="var(--steel)" stroke-width="2"/>
+      <g class="worker-body">
+        <rect x="19" y="16" width="10" height="14" rx="3" fill="var(--accent)"/>
+        <circle cx="24" cy="12" r="4" fill="#E7C9A6"/>
+        <path d="M20,10 a4,4 0 0,1 8,0 z" fill="#F5B400"/>
+        <line x1="21" y1="30" x2="18" y2="46" stroke="#2A2E33" stroke-width="3" stroke-linecap="round"/>
+        <line x1="27" y1="30" x2="29" y2="46" stroke="#2A2E33" stroke-width="3" stroke-linecap="round"/>
+        <g class="worker-arm">
+          <line x1="24" y1="24" x2="27" y2="42" stroke="#E7C9A6" stroke-width="2.5" stroke-linecap="round"/>
+          <rect x="24.5" y="40" width="7" height="3.4" rx="1" fill="var(--navy-line)"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+</div>
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="eyebrow">How a job runs</div>
+    <div class="section-head reveal">
+      <h2>Three phases. One crew, start to finish.</h2>
+      <p>No hand-offs between strangers. The crew that scopes the job is the crew that finishes it.</p>
+    </div>
+    <div class="timeline reveal">
+      <div class="timeline-line-fill"></div>
+      <div class="stage">
+        <div class="stage-dot">01</div>
+        <h3>Scope Review</h3>
+        <p>We walk the drawings, confirm labor scope and site conditions, and lock in a schedule before a single hanger goes up.</p>
+      </div>
+      <div class="stage">
+        <div class="stage-dot">02</div>
+        <h3>Rough-In</h3>
+        <p>Duct routing, hangers, and equipment placement move fast — coordinated with other trades so nobody's waiting on us.</p>
+      </div>
+      <div class="stage">
+        <div class="stage-dot">03</div>
+        <h3>Trim-Out &amp; Startup</h3>
+        <p>Insulation, closeout, and final tie-ins completed and inspection-ready, on the date we committed to.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="duct-divider" aria-hidden="true">
+  <svg class="duct-svg" viewBox="0 0 1180 64" preserveAspectRatio="none">
+    <rect class="duct-seg seg-a" x="40" y="20" width="340" height="24" rx="3"/>
+    <g class="duct-rib seg-a-ribs">
+      <line x1="110" y1="20" x2="110" y2="44"/><line x1="180" y1="20" x2="180" y2="44"/><line x1="250" y1="20" x2="250" y2="44"/><line x1="320" y1="20" x2="320" y2="44"/>
+    </g>
+    <rect class="duct-joint joint-1" x="390" y="12" width="24" height="40" rx="4"/>
+    <g class="duct-joint-bolt joint-1-bolts">
+      <circle cx="396" cy="18" r="2"/><circle cx="408" cy="18" r="2"/><circle cx="396" cy="46" r="2"/><circle cx="408" cy="46" r="2"/>
+    </g>
+    <rect class="duct-seg seg-b" x="424" y="20" width="332" height="24" rx="3"/>
+    <g class="duct-rib seg-b-ribs">
+      <line x1="490" y1="20" x2="490" y2="44"/><line x1="560" y1="20" x2="560" y2="44"/><line x1="630" y1="20" x2="630" y2="44"/><line x1="700" y1="20" x2="700" y2="44"/>
+    </g>
+    <rect class="duct-joint joint-2" x="766" y="12" width="24" height="40" rx="4"/>
+    <g class="duct-joint-bolt joint-2-bolts">
+      <circle cx="772" cy="18" r="2"/><circle cx="784" cy="18" r="2"/><circle cx="772" cy="46" r="2"/><circle cx="784" cy="46" r="2"/>
+    </g>
+    <rect class="duct-seg seg-c" x="800" y="20" width="340" height="24" rx="3"/>
+    <g class="duct-rib seg-c-ribs">
+      <line x1="870" y1="20" x2="870" y2="44"/><line x1="940" y1="20" x2="940" y2="44"/><line x1="1010" y1="20" x2="1010" y2="44"/><line x1="1080" y1="20" x2="1080" y2="44"/>
+    </g>
+  </svg>
+  <div class="duct-worker">
+    <svg viewBox="0 0 34 48" xmlns="http://www.w3.org/2000/svg">
+      <line x1="6" y1="48" x2="6" y2="6" stroke="var(--steel)" stroke-width="2"/>
+      <line x1="14" y1="48" x2="14" y2="6" stroke="var(--steel)" stroke-width="2"/>
+      <line x1="6" y1="14" x2="14" y2="14" stroke="var(--steel)" stroke-width="2"/>
+      <line x1="6" y1="24" x2="14" y2="24" stroke="var(--steel)" stroke-width="2"/>
+      <line x1="6" y1="34" x2="14" y2="34" stroke="var(--steel)" stroke-width="2"/>
+      <g class="worker-body">
+        <rect x="19" y="16" width="10" height="14" rx="3" fill="var(--accent)"/>
+        <circle cx="24" cy="12" r="4" fill="#E7C9A6"/>
+        <path d="M20,10 a4,4 0 0,1 8,0 z" fill="#F5B400"/>
+        <line x1="21" y1="30" x2="18" y2="46" stroke="#2A2E33" stroke-width="3" stroke-linecap="round"/>
+        <line x1="27" y1="30" x2="29" y2="46" stroke="#2A2E33" stroke-width="3" stroke-linecap="round"/>
+        <g class="worker-arm">
+          <line x1="24" y1="24" x2="27" y2="42" stroke="#E7C9A6" stroke-width="2.5" stroke-linecap="round"/>
+          <rect x="24.5" y="40" width="7" height="3.4" rx="1" fill="var(--navy-line)"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+</div>
+<section class="why" id="why">
+  <div class="wrap">
+    <div class="why-grid">
+      <div>
+        <div class="eyebrow">Why choose WBDA as your subcontractor</div>
+        <div class="section-head" style="margin-bottom:36px;">
+          <h2>An organized crew. Not a gamble.</h2>
+        </div>
+        <div class="why-list reveal">
+          <div class="why-item">
+            <div class="why-mark">→</div>
+            <div>
+              <h3>A real chain of command</h3>
+              <p>Every job runs through a defined structure — ownership, operations, and field leads each know their role. Questions get answered by the person who actually owns that answer, not passed around.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-mark">→</div>
+            <div>
+              <h3>One point of contact, start to finish</h3>
+              <p>You deal directly with WBDA's operations lead for scope, scheduling, and billing — the same person from the first estimate to the final invoice.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-mark">→</div>
+            <div>
+              <h3>Standing bench, not scrambling</h3>
+              <p>A core crew plus a qualified on-call bench means a no-show or a busy week doesn't turn into a schedule slip on your job.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-mark">→</div>
+            <div>
+              <h3>We stay in our lane</h3>
+              <p>WBDA runs mechanical labor — ductwork, insulation, equipment, demo — and nothing else. That focus is what lets crews move fast instead of being spread thin across trades they don't specialize in.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-mark">→</div>
+            <div>
+              <h3>Paperwork that holds up</h3>
+              <p>Estimates and invoices are broken down by crew role and hour, every time — so your project accounting is clean and nothing shows up as a surprise later.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="coverage-card reveal">
+        <div class="panel-label">Service Area</div>
+        <div class="coverage-states">
+          <div class="state-chip">Alabama</div>
+          <div class="state-chip">Georgia</div>
+        </div>
+        <p>WBDA Construction LLC operates commercial HVAC labor crews across Alabama and Georgia, currently supporting general contractor partners on active sites throughout both states. Additional GC relationships onboarded on a project or preferred-partner basis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="duct-divider" aria-hidden="true">
+  <svg class="duct-svg" viewBox="0 0 1180 64" preserveAspectRatio="none">
+    <rect class="duct-seg seg-a" x="40" y="20" width="340" height="24" rx="3"/>
+    <g class="duct-rib seg-a-ribs">
+      <line x1="110" y1="20" x2="110" y2="44"/><line x1="180" y1="20" x2="180" y2="44"/><line x1="250" y1="20" x2="250" y2="44"/><line x1="320" y1="20" x2="320" y2="44"/>
+    </g>
+    <rect class="duct-joint joint-1" x="390" y="12" width="24" height="40" rx="4"/>
+    <g class="duct-joint-bolt joint-1-bolts">
+      <circle cx="396" cy="18" r="2"/><circle cx="408" cy="18" r="2"/><circle cx="396" cy="46" r="2"/><circle cx="408" cy="46" r="2"/>
+    </g>
+    <rect class="duct-seg seg-b" x="424" y="20" width="332" height="24" rx="3"/>
+    <g class="duct-rib seg-b-ribs">
+      <line x1="490" y1="20" x2="490" y2="44"/><line x1="560" y1="20" x2="560" y2="44"/><line x1="630" y1="20" x2="630" y2="44"/><line x1="700" y1="20" x2="700" y2="44"/>
+    </g>
+    <rect class="duct-joint joint-2" x="766" y="12" width="24" height="40" rx="4"/>
+    <g class="duct-joint-bolt joint-2-bolts">
+      <circle cx="772" cy="18" r="2"/><circle cx="784" cy="18" r="2"/><circle cx="772" cy="46" r="2"/><circle cx="784" cy="46" r="2"/>
+    </g>
+    <rect class="duct-seg seg-c" x="800" y="20" width="340" height="24" rx="3"/>
+    <g class="duct-rib seg-c-ribs">
+      <line x1="870" y1="20" x2="870" y2="44"/><line x1="940" y1="20" x2="940" y2="44"/><line x1="1010" y1="20" x2="1010" y2="44"/><line x1="1080" y1="20" x2="1080" y2="44"/>
+    </g>
+  </svg>
+  <div class="duct-worker">
+    <svg viewBox="0 0 34 48" xmlns="http://www.w3.org/2000/svg">
+      <line x1="6" y1="48" x2="6" y2="6" stroke="var(--steel)" stroke-width="2"/>
+      <line x1="14" y1="48" x2="14" y2="6" stroke="var(--steel)" stroke-width="2"/>
+      <line x1="6" y1="14" x2="14" y2="14" stroke="var(--steel)" stroke-width="2"/>
+      <line x1="6" y1="24" x2="14" y2="24" stroke="var(--steel)" stroke-width="2"/>
+      <line x1="6" y1="34" x2="14" y2="34" stroke="var(--steel)" stroke-width="2"/>
+      <g class="worker-body">
+        <rect x="19" y="16" width="10" height="14" rx="3" fill="var(--accent)"/>
+        <circle cx="24" cy="12" r="4" fill="#E7C9A6"/>
+        <path d="M20,10 a4,4 0 0,1 8,0 z" fill="#F5B400"/>
+        <line x1="21" y1="30" x2="18" y2="46" stroke="#2A2E33" stroke-width="3" stroke-linecap="round"/>
+        <line x1="27" y1="30" x2="29" y2="46" stroke="#2A2E33" stroke-width="3" stroke-linecap="round"/>
+        <g class="worker-arm">
+          <line x1="24" y1="24" x2="27" y2="42" stroke="#E7C9A6" stroke-width="2.5" stroke-linecap="round"/>
+          <rect x="24.5" y="40" width="7" height="3.4" rx="1" fill="var(--navy-line)"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+</div>
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <div class="eyebrow">Get in touch</div>
+        <div class="section-head" style="margin-bottom:32px;">
+          <h2>Request a quote</h2>
+          <p>Send us the scope or drawings and we'll get back with a labor estimate — usually faster than you're used to.</p>
+        </div>
+      </div>
+      <form onsubmit="event.preventDefault(); alert('Thanks — this form is a preview. Connect it to your inbox or Jarvis email agent to go live.');">
         <div>
-                <div class="eyebrow">HVAC Mechanical Subcontractor — Alabama &amp; Georgia</div>
-                <h1>Tight crews. <em>Fast</em> installs.<br>Zero excuses on schedule.</h1>
-              <p class="lead">WBDA Construction runs dedicated HVAC labor crews for general contractors who need ductwork, insulation, and equipment set fast — without babysitting the subcontractor.</p>p>
-              <div class="hero-ctas">
-                      <a href="#contact" class="btn-primary">Request a Quote →</a>a>
-                      <a href="#services" class="btn-ghost">See Capabilities</a>a>
-                      <a href="tel:+13343147819" class="hero-call">Or Call Us <span class="mono">334-314-7819</span></a>a>
-              </div>
+          <label for="name">Name</label><br>
+          <input id="name" type="text" required>
         </div>
-        <div class="hero-panel">
-              <div class="panel-label">Scope of Work</div>
-              <div class="spec-row"><span class="k">Ductwork installation</span><span class="v">✓</span></div>
-              <div class="spec-row"><span class="k">Insulation</span><span class="v">✓</span></div>
-              <div class="spec-row"><span class="k">Equipment hanging</span><span class="v">✓</span></div>
-              <div class="spec-row"><span class="k">Selective demo</span><span class="v">✓</span></div>
-              <div class="spec-row"><span class="k">Copper / refrigerant</span><span class="v mono">by approval</span></div>
-              <div class="spec-row"><span class="k">Ferrous metalwork / welding</span><span class="v mono">not scoped</span></div>
+        <div>
+          <label for="company">Company</label><br>
+          <input id="company" type="text">
         </div>
+        <div>
+          <label for="email">Email</label><br>
+          <input id="email" type="email" required>
+        </div>
+        <div>
+          <label for="scope">Project details</label><br>
+          <textarea id="scope" placeholder="Site, scope of work, timeline..."></textarea>
+        </div>
+        <button class="form-submit" type="submit">Send Request</button>
+      </form>
     </div>
-  </section>section>
-  <section class="services" id="services">
-    <div class="wrap">
-        <div class="eyebrow">Capabilities</div>
-        <div class="section-head reveal">
-              <h2>Man-labor HVAC, done right</h2>
-              <p>We don't spread thin across every trade. WBDA crews specialize in mechanical labor — so every job gets a crew that's actually good at it.</p>
-        </div>
-    </div>
-    <div class="wrap">
-        <div class="service-grid reveal">
-              <div class="service-card">
-                      <div class="service-num">01</div>
-                      <h3>Ductwork Installation</h3>
-                      <p>Rectangular and round duct, hangers, and layout execution to spec — sized to keep pace with the schedule, not slow it down.</p>
-              </div>
-              <div class="service-card">
-                      <div class="service-num">02</div>
-                      <h3>Insulation</h3>
-                      <p>Duct and equipment insulation installed to code, coordinated tightly with rough-in so trim-out isn't waiting on us.</p>
-              </div>
-              <div class="service-card">
-                      <div class="service-num">03</div>
-                      <h3>Equipment Hanging</h3>
-                      <p>Air handlers, RTUs, and mechanical equipment set and secured — rigging and placement handled by crews who've done it before.</p>
-              </div>
-              <div class="service-card">
-                      <div class="service-num">04</div>
-                      <h3>Selective Demo</h3>
-                      <p>Removal of existing mechanical systems and ductwork ahead of new install, sequenced to protect your project timeline.</p>
-              </div>
-        </div>
-        <p class="service-note">Copper and refrigerant work available on a per-project approval basis. WBDA does not perform ferrous metalwork or welding.</p>
-    </div>
-  </section>section>
-  </p></p></em></h1>
-        </div></small></span>
-    </header>
-  </body>
-  </style></title>
-  </head>
+  </div>
+</section>
+<footer>
+  <div class="wrap footer-row">
+    <div>© 2026 WBDA Construction LLC. All rights reserved.</div>
+    <div class="mono" style="color:var(--steel);">SUBCONTRACTORS — ALABAMA &amp; GEORGIA</div>
+  </div>
+</footer>
+<script>
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive:true });
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold:0.2 });
+  revealEls.forEach(el => io.observe(el));
+  const JOINT1_X_PCT = (402 / 1180) * 100;
+  const JOINT2_X_PCT = (778 / 1180) * 100;
+  const dividers = Array.from(document.querySelectorAll('.duct-divider')).map(div => ({
+    el: div,
+    worker: div.querySelector('.duct-worker'),
+    workerArm: div.querySelector('.worker-arm'),
+    workerBody: div.querySelector('.worker-body'),
+    segA: div.querySelector('.seg-a'),
+    segARibs: div.querySelector('.seg-a-ribs'),
+    joint1: div.querySelector('.joint-1'),
+    joint1Bolts: div.querySelector('.joint-1-bolts'),
+    segB: div.querySelector('.seg-b'),
+    segBRibs: div.querySelector('.seg-b-ribs'),
+    joint2: div.querySelector('.joint-2'),
+    joint2Bolts: div.querySelector('.joint-2-bolts'),
+    segC: div.querySelector('.seg-c'),
+    segCRibs: div.querySelector('.seg-c-ribs'),
+  }));
+  const stages = [
+    { key:'segA',       start:0.00, end:0.16 },
+    { key:'segARibs',   start:0.04, end:0.18 },
+    { key:'joint1',     start:0.16, end:0.32 },
+    { key:'joint1Bolts',start:0.20, end:0.34 },
+    { key:'segB',       start:0.32, end:0.48 },
+    { key:'segBRibs',   start:0.36, end:0.50 },
+    { key:'joint2',     start:0.48, end:0.64 },
+    { key:'joint2Bolts',start:0.52, end:0.66 },
+    { key:'segC',       start:0.64, end:0.80 },
+    { key:'segCRibs',   start:0.68, end:0.82 },
+  ];
+  function localProgress(p, start, end){
+    if (end <= start) return p >= end ? 1 : 0;
+    return Math.min(1, Math.max(0, (p - start) / (end - start)));
+  }
+  let ductTicking = false;
+  function updateDucts(){
+    const vh = window.innerHeight;
+    dividers.forEach(d => {
+      const rect = d.el.getBoundingClientRect();
+      const p = localProgress(vh - rect.top, 0, vh * 0.65);
+      stages.forEach(stage => {
+        const node = d[stage.key];
+        if (!node) return;
+        const lp = localProgress(p, stage.start, stage.end);
+        if (stage.key === 'segA' || stage.key === 'segB' || stage.key === 'segC'){
+          node.style.opacity = String(lp * 0.4);
+          if (stage.key === 'segA') node.style.transform = `translateX(${(1 - lp) * -50}px)`;
+          if (stage.key === 'segB') node.style.transform = `translateY(${(1 - lp) * -16}px)`;
+          if (stage.key === 'segC') node.style.transform = `translateX(${(1 - lp) * 50}px)`;
+        } else if (stage.key.endsWith('Ribs')){
+          node.style.opacity = String(lp * 0.5);
+        } else if (stage.key === 'joint1' || stage.key === 'joint2'){
+          node.style.opacity = String(lp);
+          node.style.transform = `scale(${0.5 + lp * 0.5})`;
+        } else if (stage.key.endsWith('Bolts')){
+          node.style.opacity = String(lp);
+          node.style.fill = lp > 0.5 ? 'var(--accent)' : 'var(--steel)';
+          node.style.filter = lp > 0.5 ? 'drop-shadow(0 0 4px rgba(232,89,12,0.6))' : 'none';
+        }
+      });
+      if (d.worker){
+        const j1 = stages.find(s => s.key === 'joint1');
+        const j2 = stages.find(s => s.key === 'joint2');
+        const lp1 = localProgress(p, j1.start, j1.end);
+        const lp2 = localProgress(p, j2.start, j2.end);
+        const peak1 = 4 * lp1 * (1 - lp1);
+        const peak2 = 4 * lp2 * (1 - lp2);
+        const active = peak1 >= peak2 ? lp1 : lp2;
+        if (peak1 >= peak2){
+          d.worker.style.left = JOINT1_X_PCT + '%';
+          d.worker.style.opacity = String(peak1);
+        } else {
+          d.worker.style.left = JOINT2_X_PCT + '%';
+          d.worker.style.opacity = String(peak2);
+        }
+        const cycles = 6;
+        const swing = Math.sin(active * cycles * 2 * Math.PI);
+        if (d.workerArm) d.workerArm.setAttribute('transform', `rotate(${-8 + swing * 22} 24 24)`);
+        if (d.workerBody) d.workerBody.setAttribute('transform', `rotate(${swing * 4} 17 46)`);
+      }
+    });
+    ductTicking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ductTicking){
+      requestAnimationFrame(updateDucts);
+      ductTicking = true;
+    }
+  }, { passive:true });
+  window.addEventListener('resize', updateDucts);
+  updateDucts();
+  const timelineFill = document.querySelector('.timeline-line-fill');
+  const timelineEl = document.querySelector('.timeline');
+  let timelineTicking = false;
+  function updateTimelineLine(){
+    if (timelineFill && timelineEl){
+      const vh = window.innerHeight;
+      const rect = timelineEl.getBoundingClientRect();
+      const p = localProgress(vh - rect.top, vh * 0.15, vh * 0.75);
+      timelineFill.style.width = (p * 100) + '%';
+    }
+    timelineTicking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!timelineTicking){
+      requestAnimationFrame(updateTimelineLine);
+      timelineTicking = true;
+    }
+  }, { passive:true });
+  window.addEventListener('resize', updateTimelineLine);
+  updateTimelineLine();
+</script>
+</body>
+</html>
